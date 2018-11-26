@@ -26,10 +26,24 @@ namespace KataWordWrap.Tests
         }
 
         [TestMethod]
-        public void GivenOneWordLengthLessThanColumnsReturnWrappedWord() {
+        public void GivenOneWordLengthMoreThanColumnsReturnWrappedWord() {
             const string input = "Word";
             var result = Wrapper.Wrap(input, input.Length - 1);
             Assert.AreEqual("Wor\nd", result);
+        }
+
+        [TestMethod]
+        public void GivenTwoWordsLengthLessThanColumnsReturnThem() {
+            const string input = "Two Words";
+            var result = Wrapper.Wrap(input, input.Length + 1);
+            Assert.AreEqual(input, result);
+        }
+
+        [TestMethod]
+        public void GivenTwoWordsLengthMoreThanColumnsReturnThemWrapped() {
+            const string input = "Two Words";
+            var result = Wrapper.Wrap(input, input.Length - 1);
+            Assert.AreEqual("Two\nWords", result);
         }
     }
 }

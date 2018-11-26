@@ -1,3 +1,3 @@
 # WordWrap-Kata
 
-Referência: http://codingdojo.org/kata/WordWrap/
+## Referência: http://codingdojo.org/kata/WordWrap/

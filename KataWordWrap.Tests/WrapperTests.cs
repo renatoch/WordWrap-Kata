@@ -52,5 +52,12 @@ namespace KataWordWrap.Tests
             var result = Wrapper.Wrap(input, input.Length - 1);
             Assert.AreEqual("More than 2\nwords", result);
         }
+
+        [TestMethod]
+        public void WrapMoreThanOneTime() {
+            const string input = "Hoje é domingo, pede cachimbo.";
+            var result = Wrapper.Wrap(input, "Hoje é domingo, ".Length);
+            Assert.AreEqual("Hoje é domingo,\npede cachimbo.", result);
+        }
     }
 }

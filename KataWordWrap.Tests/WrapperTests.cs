@@ -40,10 +40,17 @@ namespace KataWordWrap.Tests
         }
 
         [TestMethod]
-        public void GivenTwoWordsLengthMoreThanColumnsReturnThemWrapped() {
+        public void GivenTwoWordsLengthMoreThanColumnsReturnThemWrappedInSpace() {
             const string input = "Two Words";
             var result = Wrapper.Wrap(input, input.Length - 1);
             Assert.AreEqual("Two\nWords", result);
+        }
+
+        [TestMethod]
+        public void WrapMoreThan2WordsOnLastSpace() {
+            const string input = "More than 2 words";
+            var result = Wrapper.Wrap(input, input.Length - 1);
+            Assert.AreEqual("More than 2\nwords", result);
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace KataWordWrap
@@ -10,8 +8,9 @@ namespace KataWordWrap
         public static string Wrap(string input, int columns) {
             var stringSize = input.Length;
             if (stringSize > columns) {
-                if (input.IndexOf(" ", StringComparison.Ordinal) > 0) {
-                    return input.Replace(" ", "\n");
+                var lastSpaceIndex = input.LastIndexOf(" ", StringComparison.Ordinal);
+                if (lastSpaceIndex > -1) {
+                    return new StringBuilder(input) {[lastSpaceIndex] = '\n'}.ToString();
                 }
                 return input.Insert(columns, "\n");
             }

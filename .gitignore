@@ -1,0 +1,14 @@
+**/[Oo]bj/
+**/[Bb]in/
+**/TestResults/
+**/.nuget/
+**/.vscode/
+**/packages/
+**/artifacts/
+**/PublishProfiles/
+**/*.user
+**/*.suo
+**/*.cache
+**/*.docstates
+*DS_Store
+.vs

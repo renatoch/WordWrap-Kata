@@ -18,14 +18,20 @@ namespace KataWordWrap
 
                     remaining = remaining.Substring(columns);
 
-                    var lastSpaceIndex = part.LastIndexOf(" ", StringComparison.Ordinal);
 
-                    if (lastSpaceIndex <= -1) {
+                    var isPartFullSentence = remaining[0] == ' ';
+                    if (isPartFullSentence) {
                         result.AppendLine(part);
+                        remaining = remaining.Substring(1);
                     } else {
-                        result.AppendLine(part.Substring(0, lastSpaceIndex));
+                        var lastSpaceIndex = part.LastIndexOf(" ", StringComparison.Ordinal);
+                        if (lastSpaceIndex <= -1) {
+                            result.AppendLine(part);
+                        } else {
+                            result.AppendLine(part.Substring(0, lastSpaceIndex));
 
-                        remaining = part.Substring(lastSpaceIndex + 1) + remaining;
+                            remaining = part.Substring(lastSpaceIndex + 1) + remaining;
+                        }
                     }
 
                 } while (remaining.Length > columns);

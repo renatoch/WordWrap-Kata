@@ -59,7 +59,14 @@ namespace KataWordWrap.Tests
             var result = Wrapper.Wrap(input, "Hoje é domingo, ".Length);
             Assert.AreEqual("Hoje é domingo,\npede cachimbo.", result);
         }
-        
+
+        [TestMethod]
+        public void WrapRightBeforeSpace () {
+            const string input = "Hoje é domingo, pede cachimbo.";
+            var result = Wrapper.Wrap(input, "Hoje é domingo,".Length);
+            Assert.AreEqual("Hoje é domingo,\npede cachimbo.", result);
+        }
+
         [TestMethod]
         public void WrapMultipleLinesWithMultipleWordsOnEachLine() {
             const string input = "Hoje é domingo. Hoje é domingo. Hoje é domingo.";
@@ -67,7 +74,6 @@ namespace KataWordWrap.Tests
             Assert.AreEqual("Hoje é domingo.\nHoje é domingo.\nHoje é domingo.", result);
         }
 
-        //TODO WrapOneLineWithMultipleWordsOnEachLine quebrando logo antes no espaço
         //TODO Outros separadores além de " " (, . ; ...)
     }
 }

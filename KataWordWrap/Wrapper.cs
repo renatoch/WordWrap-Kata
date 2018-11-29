@@ -6,26 +6,35 @@ namespace KataWordWrap
     public class Wrapper
     {
         public static string Wrap(string input, int columns) {
-            var finalStringBuilder = new StringBuilder();
-            
+            var result = new StringBuilder();
+
             var stringSize = input.Length;
             if (stringSize > columns) {
 
-                var part = input.Substring(0, columns);
+                var remaining = input;
 
-                var remaining = input.Substring(columns);
+                do {
+                    var part = remaining.Substring(0, columns);
 
-                var lastSpaceIndex = part.LastIndexOf(" ", StringComparison.Ordinal);
+                    remaining = remaining.Substring(columns);
 
-                if (lastSpaceIndex <= -1) {
-                    return input.Insert(columns, "\n");
-                }
+                    var lastSpaceIndex = part.LastIndexOf(" ", StringComparison.Ordinal);
 
-                var firstSplit = part.Substring(0, lastSpaceIndex);
-                var remainingSubPart = part.Substring(lastSpaceIndex + 1);
-                return firstSplit + "\n" + remainingSubPart + remaining;
+                    if (lastSpaceIndex <= -1) {
+                        result.AppendLine(part);
+                    } else {
+                        result.AppendLine(part.Substring(0, lastSpaceIndex));
 
+                        remaining = part.Substring(lastSpaceIndex + 1) + remaining;
+                    }
+
+                } while (remaining.Length > columns);
+
+                result.Append(remaining);
+
+                return result.ToString().Replace("\r", "");
             }
+
             return input;
         }
     }
